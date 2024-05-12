@@ -44,7 +44,7 @@ for linha in tabela.index:  # para cada linha da minha tabela
   pag.press("tab")
   pag.write(tabela.loc[linha,"marca"])
   pag.press("tab")
-  pag.write(tabela.loc[linha,"tipo"])2
+  pag.write(tabela.loc[linha,"tipo"])
   pag.press("tab")
   pag.write(str(tabela.loc[linha,"categoria"]))
   pag.press("tab")
@@ -58,6 +58,3 @@ for linha in tabela.index:  # para cada linha da minha tabela
   pag.press("tab")
   pag.press("enter")
   pag.scroll(5000) # pag.press("home")
-
-
-
