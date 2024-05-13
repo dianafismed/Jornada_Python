@@ -20,11 +20,16 @@ def main(pagina):
   campo_nome_usuario = ft.TextField(label="Escreva seu nome")
   
   chat = ft.Column()
-  campo_mensagem = ft.TextField(label="Digite sua mensagem")
   
   def enviar_mensagem(evento):
-    print("")
-        
+    texto_mensagem = campo_mensagem.value
+    nome_usuario = campo_nome_usuario.value
+    texto_chat = ft.Text(f"{nome_usuario}:{texto_mensagem}")
+    chat.controls.append(texto_chat)
+    campo_mensagem = ""
+    pagina.update()
+
+  campo_mensagem = ft.TextField(label="Digite sua mensagem", on_submit=enviar_mensagem)
   botao_enviar_mensagem = ft.ElevatedButton("Enviar", on_click=enviar_mensagem)
     
   linha_mensagem = ft.Row([campo_mensagem,botao_enviar_mensagem])
@@ -34,6 +39,8 @@ def main(pagina):
     janela.open = False
     pagina.add(chat)
     pagina.add(linha_mensagem)
+    texto_entrar_chat = ft.Text(f"{campo_nome_usuario.value}: entrou no chat")
+    chat.controls.append(texto_entrar_chat)
     pagina.update()
 
   botao_entrar = ft.ElevatedButton("Entrar no Chat", on_click=entrar_chat)
@@ -45,8 +52,6 @@ def main(pagina):
     pagina.update()
     
   botao_iniciar = ft.ElevatedButton("iniciar Chat", on_click=iniciar_chat)
-  # chat = ft.Column()
-  # nome_usuario = ft.TextField(label="Escreva seu nome")
   
   # adiciona o elemento na pagina
   pagina.add(titulo)
@@ -78,8 +83,6 @@ ft.app(target=main, view=ft.WEB_BROWSER)
 #   campo_mensagem.value = ""
 #   pagina.update()
 
-# campo_mensagem = ft.TextField(label="Digite uma mensagem", on_submit=enviar_mensagem)
-# botao_enviar_mensagem = ft.ElevatedButton("Enviar", on_click=enviar_mensagem)
 
 # def entrar_popup(evento):
 #   pagina.pubsub.send_all({"usuario": nome_usuario.value, "tipo": "entrada"})
@@ -104,17 +107,6 @@ ft.app(target=main, view=ft.WEB_BROWSER)
 #     content=nome_usuario,
 #     actions=[ft.ElevatedButton("Entrar", on_click=entrar_popup)],
 #     )
-
-# def entrar_chat(evento):
-#   pagina.dialog = popup
-#   popup.open = True
-#   pagina.update()
-
-# botao_iniciar = ft.ElevatedButton("Iniciar chat", on_click=entrar_chat)
-
-# pagina.add(texto)
-# pagina.add(botao_iniciar)
-
 
 
 # deploy
